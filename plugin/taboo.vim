@@ -316,13 +316,14 @@ endfu
 
 " 7.2: Set the tab variable in each window in the tab.
 fu s:settabvar(tabnr, var, value)
-    if v:version > 702
-        cal settabvar(a:tabnr, a:var, a:value)
-    else
+" Seems vim has a bug with settabvar?
+"    if v:version > 702
+"        cal settabvar(a:tabnr, a:var, a:value)
+"    else
         for winnr in s:windows(a:tabnr)
             cal settabwinvar(a:tabnr, winnr, a:var, a:value)
         endfor
-    endif
+"    endif
 endfu
 
 " 7.2: Each window in a tab should have the pseudo tab variable requested.
