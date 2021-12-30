@@ -327,9 +327,14 @@ endfu
 
 " 7.2: Each window in a tab should have the pseudo tab variable requested.
 fu s:gettabvar(tabnr, var)
-    if v:version > 702
-        return gettabvar(a:tabnr, a:var)
-    endif
+" Seems vim has a bug with gettabvar?
+" :tabnew
+" :tabprevious
+" :lcd c:\temp
+" :pwd " does not show C:\temp
+"    if v:version > 702
+"        return gettabvar(a:tabnr, a:var)
+"    endif
     for winnr in s:windows(a:tabnr)
         let value = gettabwinvar(a:tabnr, winnr, a:var)
         if !empty(value)
